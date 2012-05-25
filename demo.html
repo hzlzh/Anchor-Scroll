@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html lang="en-US" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <title>cool-head</title>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script>!window.jQuery && document.write('<script src="js/jquery-1.7.2.min.js"><\/script>')</script>
+  <script type="text/javascript">
+    // Anchor-Scroll
+    // Load jQuery.js firstly
+    jQuery(function() {
+      jQuery('a[href*=#]').click(function() {
+        if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname     == this.hostname) {
+          var $target = jQuery(this.hash);
+          var $url = this.hash.slice(1);
+          var $scrollTime = 500;
+    
+          function updateUrl() {
+            window.location.hash = encodeURIComponent($url);
+          }
+          $target = $target.length && $target || jQuery('[name=' + $url + ']');
+          if ($target.length) {
+            var targetOffset = $target.offset().top;
+            jQuery('html,body').animate({
+              scrollTop: targetOffset
+            }, $scrollTime);
+            setTimeout(updateUrl, $scrollTime + 100)
+            return false;
+          }
+        }
+      });
+    });
+  </script>
+  <style type="text/css">
+  .box{display: block;height: 500px;text-align: center;}
+  #box1{background-color: #41ec7a;}
+  #box2{background-color: #e28f5d;}
+  #box3{background-color: #f85b70;}
+  #box4{background-color: #cd1762;}
+  #box5{background-color: #551255;}
+  </style>
+</head>
+<body>
+  <div id="box1" class="box"><a href="#box2">click to box2</a></div>
+  <div id="box2" class="box"><a href="#box3">click to box3</a></div>
+  <div id="box3" class="box"><a href="#box4">click to box4</a></div>
+  <div id="box4" class="box"><a href="#box5">click to box5</a></div>
+  <div id="box5" class="box"><a href="#box1">click to box1</a></div>
+</body>
+</html>
