@@ -19,7 +19,9 @@
             window.location.hash = encodeURIComponent($url);
           }
           $target = $target.length && $target || jQuery('[name=' + $url + ']');
-          if ($target.length) {
+          if (!$url){
+            return false;
+          }else if($target.length) {
             var targetOffset = $target.offset().top;
             jQuery('html,body').animate({
               scrollTop: targetOffset
